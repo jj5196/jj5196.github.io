@@ -387,32 +387,97 @@
           }
         }
       },
-      "getting-started": {
-        sidebar: [
-          { id:"install", label:"Install & Accounts" },
-          { id:"naver", label:"Naver Café Access" },
-          { id:"ui", label:"UI & Key NPCs" },
-          { id:"daily", label:"Daily/Weekly Checklist" }
-        ],
-        pages: {
-          "install": {
-            title:"Install & Accounts",
-            body: `<p>Step-by-step install notes, region tips, and first login checklist.</p>`
-          },
-          "naver": {
-            title:"Naver Café Access",
-            body: `<p>How to join the café, common errors (\"Download failed\"), and VPN notes.</p>`
-          },
-          "ui": {
-            title:"UI & Key NPCs",
-            body: `<p>Screenshots of Pet Exchange NPC, Magic Shop, Event vendors.</p>`
-          },
-          "daily": {
-            title:"Daily/Weekly Checklist",
-            body: `<ul><li>Daily Cubes (table link)</li><li>Gold Chess Room (Tue/Fri/Sat/Sun)</li><li>Gift Shop limits</li></ul>`
-          }
-        }
+  "getting-started": {
+    sidebar: [
+      { id:"install", label:"开始游戏！" },
+      { id:"ui", label:"主要界面" },
+      { id:"newbees", label:"新手装备及会员盒(30天)" },
+      { id:"basics", label:"基础" }
+    ],
+    pages: {
+      "install": {
+        title:"开始游戏！",
+        body: `<div class="card">
+  <div class="kicker">Step 1</div>
+  <div class="h2">准备账号</div>
+  <p>
+    <b>方式一：</b>自行注册 <em>mgame</em> 账号（需要韩国手机号/身份证，难度较高）。<br>
+    <b>方式二：</b>淘宝/代购平台搜索 <b>mgame</b> 购买账号（注意信誉与售后，风险自担）。
+  </p>
+</div>
+
+<div class="card">
+  <div class="kicker">Step 2</div>
+  <div class="h2">下载安装包</div>
+  <p>
+    官方分流示例：<br>
+    <a href="http://lapis.gscdn.mgame.com/Lapis_Full_Setup.exe" target="_blank" rel="noopener noreferrer">
+      lapis.gscdn.mgame.com/Lapis_Full_Setup.exe
+    </a>
+  </p>
+  <p class="muted">若下载缓慢，建议使用下载器/代理；安装目录尽量避免中文路径。</p>
+</div>
+
+<div class="card">
+  <div class="kicker">Step 3</div>
+  <div class="h2">登录加速器或者VPN</div>
+  <p>
+    迅游加速器。选择热血江湖韩服并且启动后去浏览器登录 mgame账号。
+  </p>
+  <p class="muted">登录成功后通常可以关闭加速器，仅在登陆账号时打开。</p>
+  <img src="assets/vpn.png" alt="加速器示例" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+
+<div class="card">
+  <div class="kicker">Step 4</div>
+  <div class="h2">首次登录与插件安装</div>
+  <ol>
+    <li>浏览器访问 <a href="https://lapis.mgame.com" target="_blank" rel="noopener noreferrer">lapis.mgame.com</a> 并登录账号。</li>
+    <li>首登会弹出 “<b>엠게임 런처</b> 正在运行/需安装”的提示，按提示下载安装。</li>
+    <li>若出现 “下载失败/다운로드에 실패했습니다”：
+      <ul>
+        <li>确认已登录 mgame 账号；</li>
+        <li>切换浏览器（Chrome/Edge）并允许弹窗/下载；</li>
+        <li>必要时开启韩国节点加速器或使用全局代理；</li>
+        <li>安装完成后刷新页面重新点击启动。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <img src="assets/login.png" alt="Launcher 提示" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+
+<div class="card">
+  <div class="kicker">Step 5</div>
+  <div class="h2">首次启动与补丁</div>
+  <p>第一次进入游戏会自动安装并下载大量补丁（耐心等待至 100%）。完成后会自动进入登录器/角色选择界面。</p>
+  <img src="assets/loading.png" alt="首启补丁" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+
+<div class="card">
+  <div class="kicker">下一步</div>
+  <p>安装成功后，建议先看：</p>
+  <ul>
+    <li><a href="#getting-started/ui">主要界面</a>：常用菜单、NPC 位置。</li>
+    <li><a href="#getting-started/newbees">新手装备及会员盒(30天)</a>：登录福利、会员盒内容。</li>
+    <li><a href="#events/recent">最新活动</a>：当前 Hot Time、登录活动与兑换。</li>
+  </ul>
+</div>`
       },
+      "ui": {
+        title:"主要界面",
+        body: `<p>这里放主界面/设置/NPC 面板截图与说明（宠物交换所、魔法店、活动 NPC、礼品店）。</p>`
+      },
+      "newbees": {
+        title:"新手装备及会员盒(30天)",
+        body: `<p>新手送的装备、30天会员盒内容与兑换/限购说明。</p>`
+      },
+      "basics": {
+        title:"基础",
+        body: `<ul><li>日常/周常清单</li><li>Hot Time 时间</li><li>金币棋盘房（周二/五/六/日）</li></ul>`
+      }
+    }
+  },
       "leveling": {
         sidebar: [
           { id:"lv76", label:"Lv 76 Jewelry" },
