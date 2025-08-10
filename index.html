@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LAPIS Guide</title>
+  <title>佣兵传说HF</title>
   <style>
     :root{
       --bg:#0b0f19;--panel:#121828;--muted:#8590a3;--text:#e9eef7;--accent:#7cc4ff;--accent-2:#a58bff;--card:#0f1422;--border:#1c2440;
@@ -14,7 +14,7 @@
     a{color:var(--accent);text-decoration:none}
     a:hover{opacity:.9}
     /* Top banner */
-    .hero{position:relative; height:220px; display:flex; align-items:flex-end; justify-content:flex-start; padding:20px; border-bottom:1px solid var(--border); background: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;}
+    .hero{position:relative; height:220px; display:flex; align-items:flex-end; justify-content:flex-start; padding:20px; border-bottom:1px solid var(--border); background: url('assets/banner_main.jpg') center/cover no-repeat;}
     .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,12,24,.2) 0%,rgba(8,12,24,.65) 60%, rgba(8,12,24,.9) 100%)}
     .hero-inner{position:relative; z-index:1}
     .title{font-size:28px; font-weight:800; letter-spacing:.3px}
@@ -54,20 +54,24 @@
   <!-- Top banner -->
   <header class="hero" role="banner" aria-label="Top banner">
     <div class="hero-inner">
-      <div class="kicker">Community Guide</div>
-      <div class="title">LAPIS – New Player Hub</div>
-      <div class="subtitle">English-first tips, KR → EN translations, and up-to-date events</div>
-    </div>
+      <div class="kicker">社区指南</div>
+      <div class="title">佣兵传说热忠粉俱乐部</div>
+<div class="subtitle">
+  踩坑/实践经验 + 
+  <a href="https://lapis.mgame.com/news/notice/" target="_blank" rel="noopener noreferrer">
+    官网最新内容
+  </a>
+</div>    </div>
   </header>
 
   <!-- Tabs -->
   <nav class="nav" role="navigation" aria-label="Primary">
-    <button class="tab" data-section="events">Events</button>
-    <button class="tab" data-section="getting-started">Getting Started</button>
-    <button class="tab" data-section="leveling">Leveling Up</button>
-    <button class="tab" data-section="equipments">Equipments</button>
-    <button class="tab" data-section="pets">Pets</button>
-    <button class="tab" data-section="materials">Materials</button>
+    <button class="tab" data-section="events">活动</button>
+    <button class="tab" data-section="getting-started">新手指南</button>
+    <button class="tab" data-section="leveling">升级攻略</button>
+    <button class="tab" data-section="equipments">装备</button>
+    <button class="tab" data-section="pets">宠物</button>
+    <button class="tab" data-section="materials">材料/物品</button>
   </nav>
 
   <!-- Main -->
@@ -83,9 +87,9 @@
   <script>
     // --- Simple in-memory content store (edit these to maintain the site) ---
     const STORE = {
-      "events": {
+      "活动": {
         sidebar: [
-          { id:"recent", label:"Recent Events" },
+          { id:"recent", label:"最新活动" },
           { id:"gift-shop", label:"Gift Shop Rotations" },
           { id:"patch-notes", label:"Patch Summaries" }
         ],
