@@ -510,7 +510,7 @@
     function parseHash(){
       // default to Events -> Recent
       let [section='events', page] = location.hash.replace('#','').split('/');
-      if(!STORE[section]) section = 'events';
+      if(!STORE[section]) section = 'summer-login';
       if(!page) page = STORE[section].sidebar[0].id; // first item
       return {section,page};
     }
