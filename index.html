@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LAPIS Guide</title>
+  <style>
+    :root{
+      --bg:#0b0f19;--panel:#121828;--muted:#8590a3;--text:#e9eef7;--accent:#7cc4ff;--accent-2:#a58bff;--card:#0f1422;--border:#1c2440;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; background:linear-gradient(180deg,#0a0e18 0%,#0c1326 100%); color:var(--text)}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.9}
+    /* Top banner */
+    .hero{position:relative; height:220px; display:flex; align-items:flex-end; justify-content:flex-start; padding:20px; border-bottom:1px solid var(--border); background: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;}
+    .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,12,24,.2) 0%,rgba(8,12,24,.65) 60%, rgba(8,12,24,.9) 100%)}
+    .hero-inner{position:relative; z-index:1}
+    .title{font-size:28px; font-weight:800; letter-spacing:.3px}
+    .subtitle{color:var(--muted)}
+
+    /* Navbar */
+    .nav{display:flex; gap:8px; padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10}
+    .tab{padding:10px 14px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); cursor:pointer; transition:.15s}
+    .tab[aria-current="page"]{border-color:var(--accent); box-shadow:0 0 0 2px rgba(124,196,255,.15) inset}
+    .tab:hover{transform:translateY(-1px)}
+
+    /* Layout */
+    .container{display:grid; grid-template-columns:280px 1fr; gap:16px; padding:16px; max-width:1200px; margin:0 auto}
+    .sidebar{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:12px}
+    .content{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:20px; min-height:420px}
+
+    .side-title{font-weight:700; margin:4px 8px 8px}
+    .side-list{list-style:none; margin:0; padding:4px}
+    .side-item{margin:2px 0}
+
+    .pill{display:block; padding:8px 10px; border-radius:10px; color:var(--text); border:1px solid transparent}
+    .pill:hover{background:var(--card)}
+    .pill[aria-current="true"]{background:rgba(124,196,255,.08); border-color:var(--accent)}
+
+    .card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; margin:12px 0}
+    .kicker{color:var(--accent); text-transform:uppercase; font-weight:700; font-size:12px; letter-spacing:.12em}
+    .h2{font-size:22px; margin:8px 0}
+    .muted{color:var(--muted)}
+
+    @media (max-width: 860px){
+      .container{grid-template-columns:1fr}
+      .sidebar{order:2}
+    }
+  </style>
+</head>
+<body>
+  <!-- Top banner -->
+  <header class="hero" role="banner" aria-label="Top banner">
+    <div class="hero-inner">
+      <div class="kicker">Community Guide</div>
+      <div class="title">LAPIS – New Player Hub</div>
+      <div class="subtitle">English-first tips, KR → EN translations, and up-to-date events</div>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <button class="tab" data-section="events">Events</button>
+    <button class="tab" data-section="getting-started">Getting Started</button>
+    <button class="tab" data-section="leveling">Leveling Up</button>
+    <button class="tab" data-section="equipments">Equipments</button>
+    <button class="tab" data-section="pets">Pets</button>
+    <button class="tab" data-section="materials">Materials</button>
+  </nav>
+
+  <!-- Main -->
+  <main class="container">
+    <aside class="sidebar" aria-label="Section navigation">
+      <div class="side-title" id="side-title">Events</div>
+      <ul class="side-list" id="side-list"></ul>
+    </aside>
+
+    <section class="content" id="content" aria-live="polite"></section>
+  </main>
+
+  <script>
+    // --- Simple in-memory content store (edit these to maintain the site) ---
+    const STORE = {
+      "events": {
+        sidebar: [
+          { id:"recent", label:"Recent Events" },
+          { id:"gift-shop", label:"Gift Shop Rotations" },
+          { id:"patch-notes", label:"Patch Summaries" }
+        ],
+        pages: {
+          "recent": {
+            title:"What’s Happening Now",
+            body: `\
+<p class="muted">Post quick summaries of current events here. Link to official notices or Naver Café posts (title + date + short summary). Keep spoilers minimal and dates explicit.</p>
+<div class="card"><div class="kicker">Example</div><div class="h2">Gift Shop Box – Blue Python Pet</div><p>Added 2024‑12‑26. Random box with low chance of <em>Blue Python Pet Exchange Coupon</em>. If you pull it, redeem at Pet Exchange NPC.</p></div>
+<div class="card"><div class="kicker">Tip</div><p>Use absolute dates (e.g., <b>Aug 10, 2025</b>) so players in different time zones aren’t confused by “this week/next week”.</p></div>`
+          },
+          "gift-shop": {
+            title:"Gift Shop Rotations",
+            body: `<p>List the current rotation, daily/total purchase limits, and must-buys.</p>`
+          },
+          "patch-notes": {
+            title:"Patch Notes (EN)",
+            body: `<p>Short English summaries with links to KR originals. Use \"Verified on\" footers.</p>`
+          }
+        }
+      },
+      "getting-started": {
+        sidebar: [
+          { id:"install", label:"Install & Accounts" },
+          { id:"naver", label:"Naver Café Access" },
+          { id:"ui", label:"UI & Key NPCs" },
+          { id:"daily", label:"Daily/Weekly Checklist" }
+        ],
+        pages: {
+          "install": {
+            title:"Install & Accounts",
+            body: `<p>Step-by-step install notes, region tips, and first login checklist.</p>`
+          },
+          "naver": {
+            title:"Naver Café Access",
+            body: `<p>How to join the café, common errors (\"Download failed\"), and VPN notes.</p>`
+          },
+          "ui": {
+            title:"UI & Key NPCs",
+            body: `<p>Screenshots of Pet Exchange NPC, Magic Shop, Event vendors.</p>`
+          },
+          "daily": {
+            title:"Daily/Weekly Checklist",
+            body: `<ul><li>Daily Cubes (table link)</li><li>Gold Chess Room (Tue/Fri/Sat/Sun)</li><li>Gift Shop limits</li></ul>`
+          }
+        }
+      },
+      "leveling": {
+        sidebar: [
+          { id:"lv76", label:"Lv 76 Jewelry" },
+          { id:"lv86", label:"Lv 86 Jewelry" },
+          { id:"lv100", label:"Lv 100 Jewelry" },
+          { id:"lv110", label:"Lv 110 Jewelry" }
+        ],
+        pages: {
+          "lv76": { title:"Level 76 Necklace & Ring", body:"<p>How to obtain, sources, screenshots.</p>" },
+          "lv86": { title:"Level 86 Necklace & Ring", body:"<p>Methods and tips.</p>" },
+          "lv100": { title:"Level 100 Necklace & Ring", body:"<p>Hell 6★ accessory set basics; typical prices fluctuate.</p>" },
+          "lv110": { title:"Level 110 Necklace & Ring", body:"<p>Where to get, market ranges, and requirements.</p>" }
+        }
+      },
+      "equipments": {
+        sidebar: [
+          { id:"raikeln", label:"Raikeln Set" },
+          { id:"element-gear", label:"Elemental Gear & 2★" },
+          { id:"yolla", label:"Yolla 2★" },
+          { id:"engraving", label:"Engraving & Protection" }
+        ],
+        pages: {
+          "raikeln": { title:"Raikeln Set", body:"<p>2/3/4-piece bonuses and where to get each piece.</p>" },
+          "element-gear": { title:"Elemental Gear & 2★", body:"<p>Conversion tickets and reset caveats.</p>" },
+          "yolla": { title:"Yolla 2★", body:"<p>Class-specific picks and costs.</p>" },
+          "engraving": { title:"Engraving & Lower-Stat Protection", body:"<p>When to lock stats and how much Lapis it costs.</p>" }
+        }
+      },
+      "pets": {
+        sidebar: [
+          { id:"constellation", label:"Constellation Pets" },
+          { id:"spirit", label:"Spirit Pets (Fusion)" },
+          { id:"event", label:"Event/Gift Shop Pets" }
+        ],
+        pages: {
+          "constellation": { title:"Constellation Pets", body:"<p>Coupon → exchange NPC; best early picks (Stout/Ino etc.).</p>" },
+          "spirit": { title:"Spirit Pets (Fusion)", body:"<p>Fusion recipes, pros/cons vs constellation.</p>" },
+          "event": { title:"Event / Gift Shop Pets", body:"<p>Blue Python pet box example and odds disclaimer.</p>" }
+        }
+      },
+      "materials": {
+        sidebar: [
+          { id:"110-astoria", label:"110 Astoria Trophies" },
+          { id:"115-memorite", label:"115 Memorite Fragments" },
+          { id:"gold-chess", label:"Gold Chess Room" }
+        ],
+        pages: {
+          "110-astoria": { title:"Astoria Trophies (Lv110)", body:"<p>Where to farm and expected rates.</p>" },
+          "115-memorite": { title:"Peleus Memorite Fragments (Lv115)", body:"<p>Why it’s efficient; investment required.</p>" },
+          "gold-chess": { title:"Gold Chess Room", body:"<p>Schedule: Tue/Fri/Sat/Sun. One free entry with Luxury Premium.</p>" }
+        }
+      }
+    };
+
+    // --- Basic router: section in hash (#events/recent) ---
+    const tabs = document.querySelectorAll('.tab');
+    const sideTitle = document.getElementById('side-title');
+    const sideList = document.getElementById('side-list');
+    const content = document.getElementById('content');
+
+    function setActiveTab(section){
+      tabs.forEach(t => t.setAttribute('aria-current', t.dataset.section===section? 'page':'false'));
+    }
+
+    function renderSidebar(section, page){
+      const sect = STORE[section];
+      sideTitle.textContent = sectionLabel(section);
+      sideList.innerHTML = '';
+      if(!sect) return;
+      sect.sidebar.forEach(item=>{
+        const li = document.createElement('li');
+        li.className = 'side-item';
+        const a = document.createElement('a');
+        a.href = `#${section}/${item.id}`;
+        a.className = 'pill';
+        a.textContent = item.label;
+        a.setAttribute('aria-current', item.id===page? 'true':'false');
+        li.appendChild(a); sideList.appendChild(li);
+      });
+    }
+
+    function renderContent(section, page){
+      const sect = STORE[section];
+      const data = sect?.pages?.[page];
+      if(!data){ content.innerHTML = '<p class="muted">No content yet. Choose a topic from the left.</p>'; return; }
+      content.innerHTML = `<h2 class="h2">${data.title}</h2>${data.body}`;
+    }
+
+    function sectionLabel(key){
+      const map = {
+        'events':'Events','getting-started':'Getting Started','leveling':'Leveling Up','equipments':'Equipments','pets':'Pets','materials':'Materials'
+      }; return map[key]||key;
+    }
+
+    function parseHash(){
+      // default to Events -> Recent
+      let [section='events', page] = location.hash.replace('#','').split('/');
+      if(!STORE[section]) section = 'events';
+      if(!page) page = STORE[section].sidebar[0].id; // first item
+      return {section,page};
+    }
+
+    function navigate(section,page){
+      location.hash = `#${section}/${page}`;
+    }
+
+    // Event listeners
+    tabs.forEach(t=> t.addEventListener('click',()=>{
+      const section = t.dataset.section;
+      const first = STORE[section].sidebar[0].id;
+      navigate(section, first);
+    }));
+
+    window.addEventListener('hashchange', ()=>{
+      const {section,page} = parseHash();
+      setActiveTab(section); renderSidebar(section,page); renderContent(section,page);
+    });
+
+    // Initial render
+    (function init(){
+      if(!location.hash) navigate('events','recent');
+      const {section,page} = parseHash();
+      setActiveTab(section); renderSidebar(section,page); renderContent(section,page);
+    })();
+  </script>
+</body>
+</html>
