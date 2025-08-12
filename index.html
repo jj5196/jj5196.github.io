@@ -390,8 +390,9 @@
   "getting-started": {
     sidebar: [
       { id:"install", label:"开始游戏！" },
+      { id:"newchar", label:"创建角色" },
+      { id:"newbees", label:"新手礼盒" },
       { id:"ui", label:"主要界面" },
-      { id:"newbees", label:"新手装备及会员盒(30天)" },
       { id:"basics", label:"基础" }
     ],
     pages: {
@@ -460,16 +461,54 @@
   <ul>
     <li><a href="#getting-started/ui">主要界面</a>：常用菜单、NPC 位置。</li>
     <li><a href="#getting-started/newbees">新手装备及会员盒(30天)</a>：登录福利、会员盒内容。</li>
-    <li><a href="#events/recent">最新活动</a>：当前 Hot Time、登录活动与兑换。</li>
+    <li><a href="#events/summer-login">最新活动</a>：当前 Hot Time、登录活动与兑换。</li>
   </ul>
 </div>`
       },
-      "ui": {
-        title:"主要界面",
-        body: `<p>这里放主界面/设置/NPC 面板截图与说明（宠物交换所、魔法店、活动 NPC、礼品店）。</p>`
+      "newchar": {
+        title:"创建角色",
+        body: `<div class="card">
+  <div class="kicker">Step 1</div>
+  <div class="h2">选择线路</div>
+  <p>进入游戏后需要选择线路，1线人比较多，地摊基本都在1线，需要买东西可以去1线；2线人少，网络不太好的同学去2线可能会好一些。周末还会有攻城的3线。</p>
+  <img src="assets/selectline.png" alt="首启补丁" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+<div class="card">
+  <div class="kicker">Step 2</div>
+  <div class="h2">角色选择</div>
+  <p>选择线路后，进入角色选择页面。</br>
+  下面3个按钮，下面左边第一个是确认，右边的选项是返回到选择线路，最下面的按钮是删除角色。</p>
+  <img src="assets/selectchar.png" alt="首启补丁" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+<div class="card">
+  <div class="kicker">Step 3</div>
+  <div class="h2">创建角色</div>
+  <p>如果选择了空的角色栏，就会进入角色创建界面。</br></br>
+  可以去 <a href="https://lapis.mgame.com/enjoy/character/" target="_blank">这里</a> 温故各种角色的不同样子。目前官网只维护到了9转形象，实际上已经有10转（100级）和11转（120级）了。</br></br>
+  升级体感比较好的角色有神官/巫师/法师(不推荐)/公主，战士/弓箭后期实力比较强，但是前期升级比较慢。其他飞兵/骑士/水兵/枪兵，除了升级比较困难，后期表现尚等待充分验证，谨慎选择。</br></br>
+  性别方面，除了外观，后期主副官转换时(目前来看后期避免不了，86以后想练副官，必须得是把副官转换成主官再练)，必须是主官副官必须得同性别，所以如果后期副官招的都是男副官，但是主官是女角色，得先购买性别转换券。</br></br>
+
+  选择完成角色/性别后，输入角色名(非韩文操作系统似乎只能输入英文和数字),然后点击右边的“播放”按钮(点回车没用)。
+  </br></br></br></br>注意下一步进入游戏以后先不要点任何东西，看step 4的解释再做决定，不然这个号可能就浪费了。
+
+  </p>
+
+  <img src="assets/newchar.png" alt="首启补丁" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+
+<div class="card">
+  <div class="kicker">Step 4</div>
+  <div class="h2">开始游戏(肝)！</div>
+  <p>点击创建角色后，就会进入游戏了！</br></br>
+        跳出来的这个窗口再问我们要不要领取新手装备，一个账号只能领取一次，如果你不领(右边的按钮)，每次登陆它都会问题，所以不用担心。</br></br>
+        如果是为爱发光的同学选择了练级难的角色(战士/弓箭/飞兵/骑士/水兵/枪兵), 建议先别领，感受感受游戏，然后再看要不要去建立练级爽一些的角色。
+  </p>    
+  <img src="assets/fstgame.png" alt="首启补丁" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+        `
       },
       "newbees": {
-        title:"新手装备及会员盒(30天)",
+        title:"新手装备及新手礼盒(30天)",
         body: `<p>新手送的装备、30天会员盒内容与兑换/限购说明。</p>`
       },
       "basics": {
