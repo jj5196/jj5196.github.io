@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>佣兵传说HF</title>
+  <title>佣兵传说HF社区指南</title>
   <style>
     :root{
       --bg:#0b0f19;--panel:#121828;--muted:#8590a3;--text:#e9eef7;--accent:#7cc4ff;--accent-2:#a58bff;--card:#0f1422;--border:#1c2440;
@@ -392,8 +392,7 @@
       { id:"install", label:"开始游戏！" },
       { id:"newchar", label:"创建角色" },
       { id:"newbees", label:"新手礼盒" },
-      { id:"ui", label:"主要界面" },
-      { id:"basics", label:"基础" }
+      { id:"basics", label:"其他基本信息" },
     ],
     pages: {
       "install": {
@@ -600,7 +599,19 @@
       },
       "basics": {
         title:"基础",
-        body: `<ul><li>日常/周常清单</li><li>Hot Time 时间</li><li>金币棋盘房（周二/五/六/日）</li></ul>`
+        body: `<div class="card">
+  <div class="kicker">主要界面说明(最右边)</div>
+
+  <img src="assets/basicui.png" alt="basicui" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+</div>
+
+<div class="card">
+  <div class="kicker">窗口最小化方法(或者也可以alt+回车)</div>
+
+  <img src="assets/minwin.png" alt="minwin" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+
+</div>
+        `
       }
     }
   },
