@@ -89,15 +89,32 @@
     const STORE = {
       "events": {
         sidebar: [
+          { id:"daily-login", label:"每日登陆活动" },
+          { id:"weekend-login", label:"周末花瓶活动" },
           { id:"summer-login", label:"夏日登录活动" },
           { id:"summer-game", label:"夏日游戏活动" },
           { id:"summer-special", label:"夏日特别活动" }
         ],
         pages: {
+          "daily-login": {
+                  title:`每日登陆活动`,
+
+  body: `
+    每日登陆达到1个/3个/5个/7个小时能够在港口领取奖励。
+    <img src="assets/harbor.png" alt="harbor" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+      <img src="assets/dailylogin.png" alt="dailylogin" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+`},
+"weekend-login": {
+                  title:`周六/日花瓶活动`,
+
+  body: `
+    周六/周日在村里药店右边找皮肤黝黑的小姐姐。
+    <img src="assets/weekend.png" alt="weekend" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+`},
           "summer-login": {
                   title:`<a href="https://lapis.mgame.com/event/2025/summer_event/#event1" target="_blank">夏日登录活动</a>`,
 
-  body: `\
+  body: `
 <div class="card">
   <div class="kicker">活动一</div>
   <div class="h2">🌞 夏日登录活动</div>
@@ -317,7 +334,7 @@
 },
           "summer-special": {
             title:"夏日特别活动",
-            body: `\
+            body: `
 <div class="card">
   <div class="kicker">活动 1</div>
   <div class="h2">波塞冬衣装制作</div>
@@ -604,6 +621,24 @@
 
   <img src="assets/basicui.png" alt="basicui" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
 </div>
+
+<div class="card">
+  <div class="kicker">复活角色方法</div>
+        <p>村子里(可以在游戏里输入 /付阑 回村)找到广场北部的药店，找右上那屋的巫婆奶奶买。
+<img src="assets/med.png" alt="med" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+  <img src="assets/basics-rev.png" alt="basics-rev" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+
+</div>
+
+
+<div class="card">
+  <div class="kicker">复活宠物方法</div>
+        <p>村子里(可以在游戏里输入 /付阑 回村)找到北部的宠物店右下方的小伙子。
+<img src="assets/pet-rev-loc.png" alt="pet-rev-loc" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+  <img src="assets/pet-rev.png" alt="basics-rev" style="max-width:100%;border-radius:10px;border:1px solid #1c2440">
+
+</div>
+
 
 <div class="card">
   <div class="kicker">窗口最小化方法(或者也可以alt+回车)</div>
